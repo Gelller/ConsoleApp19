@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,27 @@ namespace ConsoleApp19
             test.AccountWithdrawal();
             test2.AccountWithdrawal();
 
+            test2.TransferMoney(test, 100);
+
+            test.AccountWithdrawal();
+            test2.AccountWithdrawal();
+
+            var testString = test.TestMethod("qwerty");
+            Console.WriteLine(testString);
+
+
+            string firtstTxt = "\\test.txt";
+            string secondTxt = "\\test2.txt";
+
+            string info = "Кучма Андрей Витальевич & Kuchma@mail.ru Мизинцев Павел Николаевич & Pasha@mail.ru";
+            var path = Directory.GetCurrentDirectory();
+            File.WriteAllText(path + firtstTxt, info);
+
+
+            string outputText=File.ReadAllText(path + firtstTxt );         
+            test.TestMethodEmail(ref outputText);
+
+            File.WriteAllText(path + secondTxt, outputText);
             Console.ReadLine();
         }
     }

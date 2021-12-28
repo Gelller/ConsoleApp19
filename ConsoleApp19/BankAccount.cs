@@ -90,6 +90,55 @@ namespace ConsoleApp19
             }
         }
 
+        public void TransferMoney(BankAccount bankAccount, int transferAmount)
+        {
+            if (bankAccount.AccountBalance >= transferAmount)
+            {
+                bankAccount.AccountBalance = bankAccount.AccountBalance-transferAmount;
+                AccountBalance = AccountBalance + transferAmount;
+            }         
+        }
+
+        public string TestMethod(string inputString)
+        {
+            string outputString = null;
+            foreach(var item in inputString)
+            {
+                outputString = item + outputString;
+
+            }
+            return outputString;
+        }
+
+        public void TestMethodEmail(ref string inputString)
+        {
+            bool flag = false;
+            string bufferString = "";
+
+            var arrayInputString = inputString.ToCharArray().Select(c => c.ToString()).ToArray();
+                 
+            for(int i=0; i < arrayInputString.Length; i++)
+            {
+
+                if (flag && arrayInputString[i]!=" ")
+                {
+                    bufferString = bufferString + arrayInputString[i];
+                }
+                else if (flag && arrayInputString[i] == " ")
+                {
+                    flag = false;
+                    bufferString = bufferString + " ";
+                }
+
+                if (arrayInputString[i]=="&")
+                {
+                   flag = true;
+                   i++;
+                }             
+            }
+            inputString = bufferString;
+        }
+
         public void AccountWithdrawal()
         {
             Console.WriteLine($"Номер счета: {AccountNumber}  Баланс: {AccountBalance} Тип счета: { BankAccountType} ");
