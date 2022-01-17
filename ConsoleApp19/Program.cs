@@ -49,6 +49,16 @@ namespace ConsoleApp19
             test.TestMethodEmail(ref outputText);
 
             File.WriteAllText(path + secondTxt, outputText);
+
+            BankAccount test3 = new BankAccount(100);
+            BankAccount test4 = new BankAccount(0, BankAccount.EnumBankAccountType.Type_2);
+
+            bool testBool = test3 == test4;
+
+            bool testBool2 = test3 != test4;
+
+
+            Console.WriteLine(test4.ToString());
             Console.ReadLine();
         }
     }

@@ -139,9 +139,70 @@ namespace ConsoleApp19
             inputString = bufferString;
         }
 
+        public static bool operator ==(BankAccount bankAccountOne, BankAccount bankAccountTwo)
+        {
+            if (NotNull(bankAccountOne, bankAccountTwo))
+            {
+                throw new ArgumentException("The bankAccount must be not null");
+            }
+
+            if ((bankAccountOne.AccountBalance - bankAccountTwo.AccountBalance) == 0)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        public static bool operator !=(BankAccount bankAccountOne, BankAccount bankAccountTwo)
+        {
+            if (NotNull(bankAccountOne, bankAccountTwo))
+            {
+                throw new ArgumentException("The bankAccount must be not null");
+            }
+
+            if ((bankAccountOne.AccountBalance - bankAccountTwo.AccountBalance) != 0)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
+        private static bool NotNull(BankAccount bankAccountOne, BankAccount bankAccountTwo)
+        {
+            bool numberOneNull = ReferenceEquals(bankAccountOne, null);
+            bool numberTwoNull = ReferenceEquals(bankAccountTwo, null);
+
+            if (numberOneNull != numberTwoNull && numberOneNull == true)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
+
         public void AccountWithdrawal()
         {
             Console.WriteLine($"Номер счета: {AccountNumber}  Баланс: {AccountBalance} Тип счета: { BankAccountType} ");
+        }
+
+        public override string ToString()
+        {
+            return String.Format("AccountNumber {0} AccountBalance {1} BankAccountType {2}", AccountNumber, AccountBalance, BankAccountType);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
